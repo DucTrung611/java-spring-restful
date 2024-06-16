@@ -5,20 +5,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import vn.hoidanit.jobhunter.service.error.IdlnvalidException;
+import vn.hoidanit.jobhunter.util.error.IdInvalidException;
 
 @RestController
 public class HelloController {
 
-    @ExceptionHandler(value = IdlnvalidException.class)
-    public ResponseEntity<String> handleIdException(IdlnvalidException idException) {
+    @ExceptionHandler(value = IdInvalidException.class)
+    public ResponseEntity<String> handleIdException(IdInvalidException idException) {
         return ResponseEntity.badRequest().body(idException.getMessage());
     }
 
     @GetMapping("/")
-    public String getHelloWorld() throws IdlnvalidException {
+    public String getHelloWorld() throws IdInvalidException {
         if (true)
-            throw new IdlnvalidException("123");
+            throw new IdInvalidException("123");
         return "Hello World (Hỏi Dân IT & Eric)";
     }
 }
